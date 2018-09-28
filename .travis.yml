@@ -20,3 +20,16 @@ after_success:
   - docker push pedrorio/complex-nginx
   - docker push pedrorio/complex-server
   - docker push pedrorio/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-3
+  app: complex
+  env: Complex-env
+  bucket_name: elasticbeanstalk-eu-west-3-875878712627
+  bucket_path: complex
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
